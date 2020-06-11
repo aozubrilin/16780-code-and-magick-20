@@ -7,9 +7,9 @@ var EYES_COLOR = ['black', 'red', 'blue', 'yellow', 'green'];
 var FIERBALL_COLORS = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
 var OBJECTS_QUANTITY = 4;
 
-var userDialog = document.querySelector('.setup');
+var setup = document.querySelector('.setup');
 
-var similarListElement = userDialog.querySelector('.setup-similar-list');
+var similarListElement = setup.querySelector('.setup-similar-list');
 var similarWizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
 
 var getRandomElement = function (array) {
@@ -49,11 +49,11 @@ var wizards = createWizards(OBJECTS_QUANTITY);
 renderWizards(wizards);
 
 similarListElement.appendChild(fragment);
-userDialog.querySelector('.setup-similar').classList.remove('hidden');
+setup.querySelector('.setup-similar').classList.remove('hidden');
 
 var setupOpen = document.querySelector('.setup-open');
-var setup = document.querySelector('.setup');
 var setupClose = document.querySelector('.setup-close');
+var setupUserName = document.querySelector('input[name="username"]');
 
 var wizardFireball = setup.querySelector('.setup-fireball-wrap');
 
@@ -87,8 +87,8 @@ var customizationWizard = function () {
 var setupPopup = function () {
 
   var onPopupEscPress = function (evt) {
-    evt.preventDefault();
-    if (evt.key === 'Escape') {
+    if (evt.key === 'Escape' && document.activeElement !== setupUserName) {
+      evt.preventDefault();
       closePopup();
     }
   };
