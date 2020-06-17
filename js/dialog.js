@@ -1,6 +1,8 @@
 'use strict';
 
 (function () {
+  var SETUP_STYLE_LEFT = 50 + '%';
+  var SETUP_STYLE_TOP = 80 + 'px';
 
   var getRandomCoat = window.color.getRandomCoat;
   var getRandomEyes = window.color.getRandomEyes;
@@ -51,6 +53,8 @@
 
     var openPopup = function () {
       setup.classList.remove('hidden');
+      setup.style.top = SETUP_STYLE_TOP;
+      setup.style.left = SETUP_STYLE_LEFT;
 
       document.addEventListener('keydown', onPopupEscPress);
     };
