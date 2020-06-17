@@ -4,6 +4,9 @@
   var SETUP_STYLE_LEFT = 50 + '%';
   var SETUP_STYLE_TOP = 80 + 'px';
 
+  var isEscEvent = window.util.isEscEvent;
+  var isEnterEvent = window.util.isEnterEvent;
+
   var getRandomCoat = window.color.getRandomCoat;
   var getRandomEyes = window.color.getRandomEyes;
   var getRandomFierboll = window.color.getRandomFierboll;
@@ -45,7 +48,7 @@
   var setupPopup = function () {
 
     var onPopupEscPress = function (evt) {
-      if (evt.key === 'Escape' && document.activeElement !== setupUserName) {
+      if (isEscEvent && document.activeElement !== setupUserName) {
         evt.preventDefault();
         closePopup();
       }
@@ -70,8 +73,8 @@
 
     });
 
-    setupOpen.addEventListener('keydown', function (evt) {
-      if (evt.key === 'Enter') {
+    setupOpen.addEventListener('keydown', function () {
+      if (isEnterEvent) {
         openPopup();
       }
     });
@@ -80,8 +83,8 @@
       closePopup();
     });
 
-    setupClose.addEventListener('keydown', function (evt) {
-      if (evt.key === 'Enter') {
+    setupClose.addEventListener('keydown', function () {
+      if (isEnterEvent) {
         closePopup();
       }
     });
