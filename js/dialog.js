@@ -17,6 +17,7 @@
   var setupUserName = document.querySelector('input[name="username"]');
 
   var wizardFireball = setup.querySelector('.setup-fireball-wrap');
+  var form = setup.querySelector('.setup-wizard-form');
 
   var customizationWizard = function () {
 
@@ -59,6 +60,7 @@
       setup.style.top = SETUP_STYLE_TOP;
       setup.style.left = SETUP_STYLE_LEFT;
 
+      form.addEventListener('submit', submitHandler);
       document.addEventListener('keydown', onPopupEscPress);
     };
 
@@ -88,6 +90,14 @@
         closePopup();
       }
     });
+
+
+    var submitHandler = function (evt) {
+      window.backend.save(new FormData(form), function () {
+        closePopup();
+      });
+      evt.preventDefault();
+    };
 
   };
 
