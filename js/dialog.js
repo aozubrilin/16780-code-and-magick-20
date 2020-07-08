@@ -19,32 +19,32 @@
   var wizardFireball = setup.querySelector('.setup-fireball-wrap');
   var form = setup.querySelector('.setup-wizard-form');
 
-  var customizationWizard = function () {
+  var wizardCoat = setup.querySelector('.setup-wizard .wizard-coat');
+  var wizardCoatInput = setup.querySelector('input[name="coat-color"]');
+  var wizardEyes = setup.querySelector('.setup-wizard .wizard-eyes');
+  var wizardEyesInput = setup.querySelector('input[name="eyes-color"]');
 
-    var wizardCoat = setup.querySelector('.setup-wizard .wizard-coat');
-    var wizardCoatInput = setup.querySelector('input[name="coat-color"]');
-    var wizardEyes = setup.querySelector('.setup-wizard .wizard-eyes');
-    var wizardEyesInput = setup.querySelector('input[name="eyes-color"]');
+  var wizardFireballInput = setup.querySelector('input[name="fireball-color"]');
 
-    var wizardFireballInput = setup.querySelector('input[name="fireball-color"]');
+  wizardCoat.addEventListener('click', function () {
+    var newColor = getRandomCoat();
+    wizardCoat.style.fill = newColor;
+    wizardCoatInput.value = newColor;
+    window.similar.onCoatChange(newColor);
+  });
 
-    wizardCoat.addEventListener('click', function () {
-      wizardCoat.style.fill = getRandomCoat();
-      wizardCoatInput.value = wizardCoat.style.fill;
-    });
+  wizardEyes.addEventListener('click', function () {
+    var newColor = getRandomEyes();
+    wizardEyes.style.fill = newColor;
+    wizardEyesInput.value = newColor;
+    window.similar.onEyesChange(newColor);
+  });
 
-    wizardEyes.addEventListener('click', function () {
-      wizardEyes.style.fill = getRandomEyes();
-      wizardEyesInput.value = wizardEyes.style.fill;
-    });
-
-    wizardFireball.addEventListener('click', function () {
-      var randomFierbollColor = getRandomFierboll();
-      wizardFireball.style.background = randomFierbollColor;
-      wizardFireballInput.value = randomFierbollColor;
-
-    });
-  };
+  wizardFireball.addEventListener('click', function () {
+    var randomFierbollColor = getRandomFierboll();
+    wizardFireball.style.background = randomFierbollColor;
+    wizardFireballInput.value = randomFierbollColor;
+  });
 
   var setupPopup = function () {
 
@@ -91,7 +91,6 @@
       }
     });
 
-
     var submitHandler = function (evt) {
       window.backend.save(new FormData(form), function () {
         closePopup();
@@ -101,7 +100,5 @@
 
   };
 
-  customizationWizard();
   setupPopup();
-
 })();
